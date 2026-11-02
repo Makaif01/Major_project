@@ -1,0 +1,2 @@
+Number of Samples,Number of Features,Features,Number of Classes,Classes,Best Model,Best Accuracy
+10000,3,"PH, Trub, Temperature",2,"Abnormal, Normal",Random Forest,1.0

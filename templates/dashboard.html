@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Water Quality Monitor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header class="topbar">
+    <div>
+        <h1>Smart Water Quality Monitor</h1>
+        <p>ESP32 Wi-Fi + Machine Learning Dashboard</p>
+    </div>
+    <div class="connection">
+        <span id="statusDot" class="dot offline"></span>
+        <span id="connectionText">Waiting for ESP32</span>
+    </div>
+</header>
+
+<main class="container">
+    <section class="cards">
+        <div class="card sensor">
+            <div class="label">pH Value</div>
+            <div class="value" id="ph">--</div>
+            <div class="unit">pH</div>
+        </div>
+        <div class="card sensor">
+            <div class="label">Turbidity</div>
+            <div class="value" id="turbidity">--</div>
+            <div class="unit">ADC</div>
+        </div>
+        <div class="card sensor">
+            <div class="label">Temperature</div>
+            <div class="value" id="temperature">--</div>
+            <div class="unit">°C</div>
+        </div>
+        <div class="card result-card">
+            <div class="label">Predicted Water Quality</div>
+            <div class="result" id="prediction">WAITING</div>
+            <div class="confidence" id="confidence">Confidence: --</div>
+        </div>
+    </section>
+
+    <section class="grid">
+        <div class="panel">
+            <div class="panel-title">
+                <h2>Real-Time Sensor Trends</h2>
+                <span id="lastUpdated">Last update: --</span>
+            </div>
+            <div class="chart-wrap"><canvas id="sensorChart"></canvas></div>
+        </div>
+
+        <div class="panel">
+            <h2>Current Reading</h2>
+            <div class="reading-list">
+                <div><span>pH</span><strong id="ph2">--</strong></div>
+                <div><span>Turbidity</span><strong id="turb2">--</strong></div>
+                <div><span>Temperature</span><strong id="temp2">-- °C</strong></div>
+                <div><span>Prediction</span><strong id="prediction2">--</strong></div>
+                <div><span>Confidence</span><strong id="confidence2">--</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-title">
+            <h2>Recent Readings</h2>
+            <span id="recordCount">0 records</span>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>pH</th>
+                        <th>Turbidity</th>
+                        <th>Temperature</th>
+                        <th>Prediction</th>
+                        <th>Confidence</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody">
+                    <tr><td colspan="6" class="empty">Waiting for sensor data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
